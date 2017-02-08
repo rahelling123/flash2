@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Upload Video</title>
 </head>
 <body>
-$END$
+
+<form method="post">
+    {% csrf_token %}
+{{ form.as_p }}
+    <input type="submit" value="Upload Video"/>
+    </form>
 </body>
 </html>
