@@ -1,5 +1,5 @@
 from django.http import HttpResponse, request
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
 
 # Create your views here.
@@ -41,3 +41,12 @@ def upload(request):
     template = loader.get_template('rating_uploaded.html')
     return HttpResponse(template.render(request))
 
+
+def create_rating(request):
+    vid = get_object_or_404(Video, pk=1)
+    video_list = Video.objects.all()
+    template = loader.get_template('create_rating.html')
+    context = {
+        'vid': vid, 'video_list': video_list,
+    }
+    return HttpResponse(template.render(context, request))

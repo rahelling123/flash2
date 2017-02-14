@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ vid.title }}
+<p>this makes</p>
+{% for video in video_list %}
+{{ forloop.counter }}. {{video.title  }}<br>
+{% endfor %}
+</body>
+</html>
