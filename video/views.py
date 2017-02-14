@@ -35,11 +35,11 @@ class RatingView(CreateView):
     model = Rating
     template_name = 'rating_create.html'
     fields = ['rate_value']
+    success_url = '/success_yea/'
 
+    def get_initial(self):
+        return dict(video=Video.objects.get(id=self.kwargs['video_id']))
 
-def upload(request):
-    template = loader.get_template('rating_uploaded.html')
-    return HttpResponse(template.render(request))
 
 
 def create_rating(request):
@@ -50,3 +50,10 @@ def create_rating(request):
         'vid': vid, 'video_list': video_list,
     }
     return HttpResponse(template.render(context, request))
+
+def upload(request, video_id):
+    template = loader.get_template('rating_uploaded.html')
+    video1 = Video.objects.get(id(video_id))
+    context = {'video1':video1}
+    return HttpResponse(template.render(request, context))
+
