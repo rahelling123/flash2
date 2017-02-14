@@ -8,7 +8,7 @@ urlpatterns = [
 
     url(r'^ratings', RatingView.as_view(success_url='success_yea'), name='ratingview'),
     url(r'^success', upload, name='success_yea'),
-    url(r'^create_rating', create_rating, name='create_rating'),
+    url(r'^(?P<video_id>\d+)/create_rating', create_rating, name='create_rating'),
     url(r'^(?P<video_id>\d+)/ratings', RatingView.as_view(success_url='success_yea'), name='rating_view'),
     url(r'^(?P<video_id>\d+)/success', upload, name='success_yea')
 

@@ -41,19 +41,18 @@ class RatingView(CreateView):
         return dict(video=Video.objects.get(id=self.kwargs['video_id']))
 
 
-
-def create_rating(request):
-    vid = get_object_or_404(Video, pk=1)
-    video_list = Video.objects.all()
+def create_rating(request, video_id):
+    vid = get_object_or_404(Video, pk=video_id)
+    video_list = Video.objects.order_by('-date_created')[:5]
     template = loader.get_template('create_rating.html')
     context = {
-        'vid': vid, 'video_list': video_list,
+        'vid': vid, 'video_list': video_list, 'range': range(8)
     }
     return HttpResponse(template.render(context, request))
+
 
 def upload(request, video_id):
     template = loader.get_template('rating_uploaded.html')
     video1 = Video.objects.get(id(video_id))
-    context = {'video1':video1}
+    context = {'video1': video1}
     return HttpResponse(template.render(request, context))
-

@@ -8,7 +8,10 @@
 {{ vid.title }}
 <p>this makes</p>
 {% for video in video_list %}
-{{ forloop.counter }}. {{video.title  }}<br>
+    Title:
+{{ forloop.counter }}. {{ video.title }}<br>
+    Date Created:
+    {{ video.date_created }}<br><br>
 {% endfor %}
 </body>
 </html>
