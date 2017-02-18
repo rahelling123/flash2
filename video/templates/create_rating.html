@@ -5,15 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-{{ vid.title }}
-<p>this makes</p>
-{% for video in video_list %}
-    Title:
-{{ forloop.counter }}. {{ video.title }}<br>
-    Date Created:
-    {{ video.date_created }}<br><br>
+<p>{{ vid.title }}</p>
+
+<form action="{% url 'create_rating' vid.pk%}"  method="post">
+
+{% csrf_token %}
+
+    <input type="text" name="rate_comment">
+    <input type="submit" value="Rate Video">
+
+</form>
+
+<p>Past Ratings:</p>
+
+{% for rating in past_ratings %}
+{{ rating.rate_comment }}<br>
 {% endfor %}
-{{ past_ratings.rate_value }}
+
+
 
 </body>
 </html>
