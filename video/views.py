@@ -1,4 +1,7 @@
+from audioop import reverse
+
 from django.http import HttpResponse, request
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 
@@ -33,27 +36,18 @@ class VideoView(DetailView):
 
 def create_rating(request, video_id):
     vid = get_object_or_404(Video, pk=video_id)
-    past_ratings = Rating.objects.filter(pk=video_id)
+    past_ratings = vid.rating.order_by('date_created')[:5]
     template = loader.get_template('create_rating.html')
     context = {
-        'vid': vid, 'past_rating': past_ratings
+        'vid': vid, 'past_ratings': past_ratings
     }
     return HttpResponse(template.render(context, request))
 
 
-def upload(request, video_id):
-    template = loader.get_template('rating_uploaded.html')
-    video1 = Video.objects.get(id(video_id))
-    context = {'video1': video1}
-    return HttpResponse(template.render(request, context))
-
-
-def video_ratings(request):
-    template = loader.get_template('ratings.html')
-    p_ratings = Rating.objects.all()
-    vid_rate = Video.objects.get(pk=1)
-    ratings_of_video = vid_rate.rating.all()
+def rating_upload(request, video_id):
+    template = loader.get_template('rating_upload.html')
+    rated_video = Video.objects.get(pk=video_id)
     context = {
-        'p_ratings': p_ratings, 'vid_rate': vid_rate, 'ratings_of_video': ratings_of_video
+        'rated_video': rated_video
     }
     return HttpResponse(template.render(context, request))

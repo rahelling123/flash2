@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import datetime
+
 from django.db import models
 
 
@@ -22,6 +24,7 @@ class Rating(models.Model):
     rate_value = models.IntegerField(default=5, choices=rate_choice)
     video = models.ForeignKey('Video', related_name='rating', null=True)
     rate_comment = models.CharField(max_length=200, default="No Comment")
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.rate_comment
