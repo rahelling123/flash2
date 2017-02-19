@@ -1,16 +1,17 @@
-from audioop import reverse
 
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, request
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
-
-# Create your views here.
-from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DetailView
-
 from video.models import Video, Rating
+
+
+# Create your views here.
+
+
 
 
 def index(request):
@@ -45,9 +46,16 @@ def create_rating(request, video_id):
 
 
 def rating_upload(request, video_id):
-    template = loader.get_template('rating_upload.html')
     rated_video = Video.objects.get(pk=video_id)
-    context = {
-        'rated_video': rated_video
-    }
-    return HttpResponse(template.render(context, request))
+
+    try:
+        rating_comment = request.POST.get('rate_comment')
+
+    except (KeyError):
+        return render(request, 'create_rating.html', video_id)
+
+    else:
+        new_rating = Rating(rate_comment=rating_comment, video=rated_video)
+        new_rating.save()
+
+    return HttpResponseRedirect(reverse('create_rating', kwargs={'video_id':video_id}))

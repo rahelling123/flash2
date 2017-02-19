@@ -7,7 +7,7 @@
 <body>
 <p>{{ vid.title }}</p>
 
-<form action="{% url 'create_rating' vid.pk%}"  method="post">
+<form action="{% url 'rating_upload' vid.pk %}"  method="post">
 
 {% csrf_token %}
 
