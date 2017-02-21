@@ -37,7 +37,7 @@ class VideoView(DetailView):
 
 def create_rating(request, video_id):
     vid = get_object_or_404(Video, pk=video_id)
-    past_ratings = vid.rating.order_by('date_created')[:5]
+    past_ratings = vid.rating.order_by('-date_created')[:5]
     template = loader.get_template('create_rating.html')
     context = {
         'vid': vid, 'past_ratings': past_ratings

@@ -6,22 +6,25 @@
 </head>
 <body>
 <p>Sign Up Below
-
+</p>
     <form action="signup_page.html" method="post">
     {% csrf_token %}
+
     First Name:
     <input type="text" name="first_name" required="true"><br><br>
     Last Name:
-    <input type="text" name="first_name" required="true"><br><br>
+    <input type="text" name="last_name" required="true"><br><br>
     Username:
     <input type="text" name="username" required="true"><br><br>
     Password
     <input type="password" name="password" required="true"><br><br>
+    Email
+    <input type="email" name="email" required="true"><br><br>
 
     <input type="submit" value="POST">
 
 </form>
 
-</p>
+
 </body>
 </html>
