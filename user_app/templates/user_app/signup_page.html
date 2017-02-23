@@ -7,7 +7,7 @@
 <body>
 <p>Sign Up Below
 </p>
-    <form action="signup_page.html" method="post">
+    <form action={% url 'signup' %} method="post">
     {% csrf_token %}
 
     First Name:
