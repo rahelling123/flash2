@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^video/', include('video.urls')),
-    url(r'^user/', include('user_app.urls'))
+    url(r'^user/', include('user_management.urls'))
 ]

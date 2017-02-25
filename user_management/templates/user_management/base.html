@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+BASE<br><br>
+<a href="{% url 'index'  %}">Flash Home</a> <br>
+<a href="{% url 'user_account' %}">Account</a>
+<br><br>
+
+{% block content %}
+{% endblock  %}
+</body>
+</html>

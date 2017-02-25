@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'user_management/base.html' %}
+{% block content %}
 <body>
 Finally <br>
 </body>
+{{ user.username }}<br><br>
 {% for video in vidall%}
-{{ forloop.counter }}. &nbsp;<strong>{{ video.title }}</strong>  <br>
-    &nbsp; &nbsp; Rating: {{ video.rating }}<br>
-    <a href="video/{{ video.pk }}">{{ video.title}}</a> <br>
+ {{ forloop.counter }}
+    <strong><a href="video/{{ video.pk }}">{{ video.title}}</a></strong> <br>
+    &nbsp; &nbsp; Rating: {{ video.rating }}<br> <br>
+
 
 {% endfor %}
 <br>
 
 <a href= "{% url 'upload' %}">Upload New Video</a>
-
+{% endblock %}
 </html>

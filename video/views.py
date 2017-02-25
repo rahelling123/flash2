@@ -11,15 +11,14 @@ from video.models import Video, Rating
 
 # Create your views here.
 
-
-
-
 def index(request):
     template = loader.get_template('index.html')
     vidall = Video.objects.order_by('-date_created')[:5]
     context = {
-        'vidall': vidall
-    }
+            'vidall': vidall
+        }
+    # if request.user.is_authenticated():
+    #     username = request.user.username
     return HttpResponse(template.render(context, request))
 
 
